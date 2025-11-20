@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Installation" id="Installation">
+
+    <p>Install <emphasis>RouterRegister</emphasis> using <a href="https://getcomposer.org/">Composer</a>.</p>
+    <p>
+        If using <emphasis>composer.json</emphasis> to manage project dependencies,
+        add the following to the <emphasis>require</emphasis> section of composer.json:
+    </p>
+    <code-block lang="JSON">
+        &quot;beastbytes/router-register&quot;: &quot;&lt;version-constraint&gt;&quot;
+    </code-block>
+
+    <p>To install from the console, run:</p>
+    <code-block lang="Console">
+        php composer.phar require &quot;beastbytes/router-register:&lt;version-constraint&gt;&quot;
+    </code-block>
+</topic>

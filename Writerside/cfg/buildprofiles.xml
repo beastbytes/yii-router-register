@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE buildprofiles SYSTEM "https://resources.jetbrains.com/writerside/1.0/build-profiles.dtd">
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <variables>
+        <custom-favicons>
+            https://raw.githubusercontent.com/beastbytes/router-register/refs/heads/master/Writerside/images/favicon.png
+        </custom-favicons>
+        <header-logo>logo.png</header-logo>
+    </variables>
+    <footer>
+        <copyright>2025 BeastBytes</copyright>
+        <social type="github" href="https://github.com/beastbytes/router-register">
+            RouterRegister GitHub Repository
+        </social>
+    </footer>
+    <build-profile instance="r">
+        <variables>
+            <noindex-content>true</noindex-content>
+        </variables>
+    </build-profile>
+
+</buildprofiles>

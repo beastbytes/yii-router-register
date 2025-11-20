@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Defining Middleware Attributes" id="Defining-Middleware-Attributes">
+
+    <p>
+        Middleware to be applied to a route can be defined using Router Register's
+        <a href="Other-Attributes.topic#middleware">Middleware Attribute</a>
+        or by defining middleware attributes in the application.
+    </p>
+    <p>
+        Using application defined middleware attributes will make the source code cleaner
+        and gives IDE code completion and type checking.
+    </p>
+
+    <chapter title="AccessChecker Middleware Example">
+        <p>
+            As an example, consider middleware to provide access checking
+            to ensure that the current user has permission to perform the requested action.
+            If the user does not have permission,
+            the access checker redirects the user to a <emphasis>safe</emphasis> location.
+        </p>
+        <p>The access checker middleware will be something like:</p>
+        <code-block lang="PHP">
+            final class AccessChecker implements Psr\Http\Server\MiddlewareInterface
+            {
+                private ?string $permission = null;
+                private ?string $route = null;
+
+                public function __construct(
+                    private AccessCheckerInterface $accessChecker,
+                    private CurrentUser $currentUser,
+                    private ResponseFactoryInterface $responseFactory,
+                ) {
+                }
+
+                public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+                {
+                    if ($this->accessChecker->userHasPermission($this->currentUser->getId(), $this->permission)) {
+                        return $handler->handle($request);
+                    }
+
+                    return $this
+                        ->responseFactory
+                        ->createResponse(Status::FOUND)
+                        ->withHeader(
+                            Header::LOCATION,
+                            $this
+                                ->urlGenerator
+                                ->generate($this->route)
+                        )
+                    ;
+                }
+
+                public function withPermission(string $permission): self
+                {
+                    $new = clone $this;
+                    $new->permission = $permission;
+                    return $new;
+                }
+
+                public function withRedirectRoute(string $route): self
+                {
+                    $new = clone $this;
+                    $new->route = $route;
+                    return $new;
+                }
+            }
+        </code-block>
+
+        <chapter title="Using the Middleware Attribute">
+            <p>
+                Using the AccessChecker middleware with Router Register's
+                <a href="Other-Attributes.topic#middleware">Middleware attribute</a>
+                will look like:
+            </p>
+            <code-block lang="PHP">
+                final class MyClass
+                {
+                    #[Get(MyClassRoute::view)]
+                    #[Middleware(
+                            'fn (' . AccessChecker::class . ' $checker) => $checker'
+                            . "->withPermission('my-class.view')"
+                            . "->withRedirectRoute('safe.location')"
+                    )]
+                    public function view(): ResponseInterface
+                    {
+                        // Action code
+                    }
+                }
+            </code-block>
+            <p>
+                This works and is OK for a middleware that is only used once,
+                but the middleware definition is a lot of code, especially if repeated for many actions.
+            </p>
+            <p>
+                A better solution is to define an application middleware attribute;
+                it will reduce the amount of code and make it more descriptive.
+            </p>
+        </chapter>
+
+        <chapter title="Defining an Application Middleware Attribute">
+            <p>Application middleware attributes must implement
+                <code>BeastBytes\Router\Register\Attribute\MiddlewareInterface</code>
+                which requires that the attribute has a `getMiddleware()` method that returns the middleware string.
+            </p>
+            <p>For the access checker, this will look like:</p>
+            <code-block lang="PHP">
+                #[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)]
+                final class AccessCheck implements BeastBytes\Router\Register\Attribute\MiddlewareInterface
+                {
+                    public function __construct(
+                            private readonly string $permission,
+                            private readonly string $redirectRoute,
+                            private readonly bool $disable = false,
+                    )
+                    {
+                    }
+
+                    public function getMiddleware(): string
+                    {
+                        return 'fn (' . AccessChecker::class . ' $checker) => $checker'
+                                . "->withPermission('" . $this->permission . "')"
+                                . "->withRedirectRoute('" . $this->redirectRoute . "'')";
+                    }
+
+                    public function disable(): bool
+                    {
+                        return $this->disable;
+                    }
+                }
+            </code-block>
+            <p>Then, to add the middleware to the route definition:</p>
+            <code-block lang="PHP">
+                final class MyClass
+                {
+                    #[Get(MyClassRoute::view)]
+                    #[AccessCheck(permission: 'my-class.view', redirectRoute: 'safe.location')]
+                    public function view(): ResponseInterface
+                    {
+                        // Action code
+                    }
+                }
+            </code-block>
+            <p>
+                Less code, more readable code, more reusable code,
+                and there will be <tooltip term="IDE">IDE</tooltip> code completion and type checking.
+            </p>
+            <p>
+                The resulting route definition is the same in both cases.
+            </p>
+        </chapter>
+    </chapter>
+</topic>

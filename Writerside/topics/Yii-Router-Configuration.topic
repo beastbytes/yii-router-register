@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Yii Router Configuration" id="Yii-Router-Configuration">
+    <p>
+        <emphasis>RouterRegister</emphasis> generates group and route configuration files for use by the Router;
+        simply require and unpack the <emphasis>groups.php</emphasis> file in the <code>AddGroup()</code> method
+        of the <code>RouteCollectionInterface</code> configuration, which should look something like:
+    </p>
+
+    <code-block lang="PHP">
+        RouteCollectionInterface::class => static function (
+            RouteCollectorInterface $collector
+        ) {
+            $collector
+                ->middleware(CsrfTokenMiddleware::class)
+                ->middleware(FormatDataResponse::class)
+                // adjust according to fit your directory structure
+                ->addGroup(...(require dirname(__DIR__, 2)
+                    . DIRECTORY_SEPARATOR . 'router'
+                    . DIRECTORY_SEPARATOR . 'groups.php'
+                ))
+            ;
+
+            return new RouteCollection($collector);
+        },
+    </code-block>
+</topic>

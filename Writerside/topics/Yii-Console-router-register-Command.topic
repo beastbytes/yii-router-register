@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Yii Console router::register Command" id="Yii-Console-router-register-Command">
+
+    <chapter title="NAME">
+        <p>router::register - Register routes to configuration</p>
+    </chapter>
+
+    <chapter title="SYNOPSIS">
+        <p>php yii router:register [OPTION]... [SRC]</p>
+    </chapter>
+
+    <chapter title="DESCRIPTION">
+        <p>Registers routes defined by PHP attributes in application source files to router configuration files.</p>
+    </chapter>
+
+    <chapter title="ARGUMENT">
+        <p>Path to source files. All directories in the path are scanned. [default: current working directory]</p>
+    </chapter>
+
+    <chapter title="OPTIONS">
+        <deflist>
+            <def title="-e, --except[=EXCEPT]">
+                <p>Exclude path from source files. (multiple values allowed)</p>
+                <p>[default: ['./config/\**', './resources/\**', './tests/\**', './vendor/\**']]</p>
+            </def>
+            <def title="-o, --only[=ONLY]">
+                <p>Use the Only specified pattern for matching source files. (multiple values allowed)</p>
+                <p>[default: ['\**Controller.php']]</p>
+            </def>
+            <def title="-w, --write[=WRITE]">
+                <p>Path to Write router configuration files to.</p>
+                <p>[default: "./config/router"]</p>
+            </def>
+        </deflist>
+        <note>The standard Yii console options are also available</note>
+    </chapter>
+
+    <chapter title="EXAMPLES">
+        <deflist>
+            <def title="Register routes using all default options">
+                <code-block lang="Shell">php yii router::register</code-block>
+            </def>
+            <def title="Register routes using 'frontend' as the default group">
+                <code-block lang="Shell">php yii router::register -d frontend</code-block>
+            </def>
+            <def title="Register routes and write configuration files to ./route directory">
+                <code-block lang="Shell">php yii router::register -w ./router</code-block>
+            </def>
+        </deflist>
+    </chapter>
+</topic>

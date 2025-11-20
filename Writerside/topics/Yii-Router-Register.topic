@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Yii Router Register" id="Yii-Router-Register">
+
+    <p>
+        <emphasis>Yii RouterRegister</emphasis> allows routes to be defined in application source
+        files using PHP <a href="https://www.php.net/manual/en/language.attributes.php">Attributes</a> amd
+        <a href="https://www.php.net/manual/en/language.enumerations.php">Enumerations</a>,
+        and generates router configuration files.
+    </p>
+    <p>There are a number of benefits of defining and registering routes using RouterRegister:</p>
+    <list>
+        <li>
+            Self-documenting code: it's clear that a method corresponds to a given route and what parameters, hosts,
+            and middleware apply to the route.
+        </li>
+        <li>
+            Single point of truth: each route, its URI and name is defined in an enumeration, making maintenance
+            simpler and providing IDE code completion.
+        </li>
+        <li>
+            Simplifies development and eliminates typos: IDE code completion for routes works when generating URLs
+            as well.
+        </li>
+    </list>
+    <p>
+        The package provides an instance of <code>RouterRegister\WriterInterface</code>
+        that writes the router configuration files,
+        and a console command to run <emphasis>RouterRegister</emphasis>.
+    </p>
+    <p>
+        This document provides details of the Writer and console command.
+        Documentation for <emphasis>RouterRegister</emphasis> Attributes and Enumerations and how to use them in an
+        application is at <a href="https://beastbytes.github.io/router-register"/>.
+    </p>
+</topic>

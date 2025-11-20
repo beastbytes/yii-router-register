@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Attributes" id="Attributes">
+
+    <p>Attributes are used to assign Routes in the controller.</p>
+    <p>This section provides the full definition of all <emphasis>RouterRegister</emphasis> attributes.</p>
+    <list>
+        <li><a href="Group-Attributes.topic"/></li>
+        <li><a href="HTTP-Method-Attributes.topic"/></li>
+        <li><a href="Parameter-Attributes.topic"/></li>
+        <li><a href="Other-Attributes.topic"/></li>
+        <li><a href="Defining-Middleware-Attributes.topic"/></li>
+    </list>
+</topic>

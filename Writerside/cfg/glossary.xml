@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE terms SYSTEM "https://resources.jetbrains.com/writerside/1.0/glossary.dtd">
+<terms>
+    <term name="CORS">
+        Cross-Origin Resource Sharing
+    </term>
+    <term name="HTTP">
+        Hyper-Text Transfer Protocol
+    </term>
+    <term name="IDE">
+        Integrated Development Environment
+    </term>
+    <term name="URI">
+        Uniform Resource Identifier
+    </term>
+    <term name="URL">
+        Uniform Resource Locator
+    </term>
+</terms>
