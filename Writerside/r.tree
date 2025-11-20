@@ -8,19 +8,6 @@
 
     <toc-element topic="Yii-Router-Register.topic"/>
     <toc-element topic="Installation.topic"/>
-    <toc-element topic="Groups-and-Routes.topic">
-        <toc-element topic="Groups.topic"/>
-        <toc-element topic="Routes.topic"/>
-    </toc-element>
-    <toc-element topic="Attributes.topic">
-        <toc-element topic="Group-Attributes.topic"/>
-        <toc-element topic="HTTP-Method-Attributes.topic"/>
-        <toc-element topic="Parameter-Attributes.topic"/>
-        <toc-element topic="Other-Attributes.topic"/>
-        <toc-element topic="Defining-Middleware-Attributes.topic"/>
-    </toc-element>
-    <toc-element topic="Assigning-Groups-and-Routes.topic"/>
-    <toc-element topic="Create-a-Writer-Object.topic"/>
-    <toc-element topic="Yii-Router-Configuration.topic"/>
     <toc-element topic="Yii-Console-router-register-Command.topic"/>
+    <toc-element topic="Yii-Router-Configuration.topic"/>
 </instance-profile>
