@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace BeastBytes\Router\Register;
+namespace BeastBytes\Yii\Router\Register;
 
+use BeastBytes\Router\Register\Parser;
+use BeastBytes\Router\Register\WriterInterface;
 use RuntimeException;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -26,8 +28,8 @@ final class RegisterCommand extends Command
     private array $only = ['**Controller.php'];
 
     public function __construct(
-        private readonly Parser $generator,
-        private readonly Writer $writer
+        private readonly Parser $parser,
+        private readonly WriterInterface $writer
     )
     {
         parent::__construct();
@@ -95,7 +97,7 @@ final class RegisterCommand extends Command
         ]);
 
         $groups = $this
-            ->generator
+            ->parser
             ->processFiles($files)
         ;
 
