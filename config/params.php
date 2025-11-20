@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use BeastBytes\Router\Register\RegisterCommand;
+use BeastBytes\Yii\Router\Register\RegisterCommand;
 
 return [
     'yiisoft/yii-console' => [
