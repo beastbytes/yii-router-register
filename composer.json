@@ -19,18 +19,16 @@
   ],
   "require": {
     "php": "^8.2",
-    "beastbytes/router-register": "dev-master",
+    "beastbytes/router-register": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0",
     "symfony/console": "^6.0",
+    "vimeo/psalm": "^6.0",
     "yiisoft/dummy-provider": "^1.0",
     "yiisoft/files": "^2.0",
     "yiisoft/router": "^4.0",
     "yiisoft/yii-console": "^2.0"
-  },
-  "require-dev": {
-    "dg/bypass-finals": "^1.0",
-    "phpunit/phpunit": "^10.0",
-    "rector/rector": "^1.0",
-    "vimeo/psalm": "^6.0"
   },
   "autoload": {
     "psr-4": {
@@ -43,18 +41,12 @@
     }
   },
   "extra": {
-    "branch-alias": {
-      "dev-master": "1.0.x-dev"
-    },
     "config-plugin-options": {
       "source-directory": "config"
     },
     "config-plugin": {
       "di-console": "di-console.php",
-      "params": "params.php"
+      "params-console": "params-console.php"
     }
-  },
-  "config": {
-    "sort-packages": true
   }
 }
