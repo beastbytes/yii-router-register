@@ -7,7 +7,7 @@
     "routes",
     "yii3"
   ],
-  "type": "project",
+  "type": "library",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "license": "BSD-3-Clause",
